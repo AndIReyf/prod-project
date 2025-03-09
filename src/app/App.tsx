@@ -1,10 +1,9 @@
 import './styles/index.scss';
-import {Suspense, JSX} from 'react'
-import {Link, Route, Routes} from "react-router-dom";
+import {JSX} from 'react'
+import {Link} from "react-router-dom";
 import {useTheme} from "app/providers/ThemeProvider";
-import {classNames} from "shared/lib/classNames/classNames";
-import {AboutPage} from "pages/AboutPage";
-import {MainPage} from "pages/MainPage";
+import {classNames} from "shared/lib";
+import {AppRoute} from "app/providers/router";
 
 export const App = (): JSX.Element => {
   const {theme, toggleTheme} = useTheme();
@@ -14,12 +13,7 @@ export const App = (): JSX.Element => {
       <button onClick={toggleTheme}>Toggle Theme</button>
       <Link to={'/'}>Main Page</Link>
       <Link to={'/about'}>About</Link>
-      <Suspense fallback={<div>Loading...</div>}>
-        <Routes>
-          <Route path={'/'} element={<MainPage/>}/>
-          <Route path={'/about'} element={<AboutPage/>}/>
-        </Routes>
-      </Suspense>
+      <AppRoute/>
     </div>
   )
 }
