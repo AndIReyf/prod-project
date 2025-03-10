@@ -1,15 +1,17 @@
 type Mods = Record<string, boolean | string>
 
-type classNames = (
+interface classNamesProps {
   cls: string,
-  mods: Mods,
-  additional: string[]
-) => string;
+  mods?: Mods,
+  additional?: string[]
+}
 
-export const classNames: classNames = (cls, mods, additional) => {
+type classNames = (props: classNamesProps) => string;
+
+export const classNames: classNames = ({cls, mods = {}, additional = []}) => {
   return [
     cls,
-    ...additional,
+    ...additional.filter(Boolean),
     ...Object.entries(mods)
       .filter(([, value]) => Boolean(value))
       .map(([classNames]) => classNames),
