@@ -4,6 +4,7 @@ import {useTheme} from "app/providers/ThemeProvider";
 import {classNames} from "shared/lib";
 import {AppRoute} from "app/providers/router";
 import {Navbar} from "widgets/Navbar";
+import {Sidebar} from "widgets/Sidebar";
 
 export const App = (): JSX.Element => {
   const {theme} = useTheme();
@@ -11,7 +12,10 @@ export const App = (): JSX.Element => {
   return (
     <div className={classNames({cls: 'app', additional: [theme]})}>
       <Navbar/>
-      <AppRoute/>
+      <div className="content-page">
+        <Sidebar/>
+        <AppRoute/>
+      </div>
     </div>
   )
 }
