@@ -1,5 +1,5 @@
 import './styles/index.scss';
-import {JSX} from 'react'
+import {JSX, Suspense} from 'react'
 import {useTheme} from "app/providers/ThemeProvider";
 import {classNames} from "shared/lib";
 import {AppRoute} from "app/providers/router";
@@ -11,11 +11,13 @@ export const App = (): JSX.Element => {
 
   return (
     <div className={classNames({cls: 'app', additional: [theme]})}>
-      <Navbar/>
-      <div className="content-page">
-        <Sidebar/>
-        <AppRoute/>
-      </div>
+      <Suspense fallback="Loading...">
+        <Navbar/>
+        <div className="content-page">
+          <Sidebar/>
+          <AppRoute/>
+        </div>
+      </Suspense>
     </div>
   )
 }

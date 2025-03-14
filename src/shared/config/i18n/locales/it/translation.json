@@ -1,0 +1,12 @@
+{
+  "pages": {
+    "main": "Home",
+    "about": "Chi siamo"
+  },
+  "buttons": {
+    "langSwitcher": {
+      "en": "Inglese",
+      "it": "Italiano"
+    }
+  }
+}
