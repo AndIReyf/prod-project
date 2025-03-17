@@ -18,7 +18,15 @@ const compat = new FlatCompat({
 /** @type {import('eslint').Linter.Config[]} */
 export default [
   { files: ['**/*.{js,mjs,cjs,ts,jsx,tsx}'] },
-  { languageOptions: { globals: globals.browser } },
+  {
+    languageOptions: {
+      globals: {
+        ...globals.browser,
+        ...globals.jest,
+        ...globals.es2021,
+      },
+    },
+  },
   pluginJs.configs.recommended,
   ...tseslint.configs.recommended,
   pluginReact.configs.flat.recommended,
@@ -50,6 +58,14 @@ export default [
       'react/function-component-definition': 'off',
       'no-undef': 'warn',
       'i18next/no-literal-string': 'warn',
+      'max-len': ['error', {
+        code: 100,
+        tabWidth: 2,
+        ignoreComments: true,
+        ignoreTrailingComments: true,
+        ignoreRegExpLiterals: true,
+        ignoreUrls: true,
+      }],
       'import/order': [
         'error',
         {

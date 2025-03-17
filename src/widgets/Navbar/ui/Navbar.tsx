@@ -16,8 +16,20 @@ export const Navbar = ({ className }: NavbarProps): JSX.Element => {
   return (
     <div className={classNames({ cls: classes.navbar, additional: [className] })}>
       <div className={classes.linksWrapper}>
-        <AppLink theme={AppLinkTheme.SECONDARY} to={RoutePath.main} className={classes.link}>{t('pages.main')}</AppLink>
-        <AppLink theme={AppLinkTheme.SECONDARY} to={RoutePath.about} className={classes.link}>{t('pages.about')}</AppLink>
+        <AppLink
+          theme={AppLinkTheme.SECONDARY}
+          to={RoutePath.main}
+          className={classes.link}
+        >
+          {t('pages.main')}
+        </AppLink>
+        <AppLink
+          theme={AppLinkTheme.SECONDARY}
+          to={RoutePath.about}
+          className={classes.link}
+        >
+          {t('pages.about')}
+        </AppLink>
       </div>
     </div>
   );

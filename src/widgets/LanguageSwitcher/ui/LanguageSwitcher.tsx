@@ -13,7 +13,9 @@ interface LanguageSwitcherProps {
 export const LanguageSwitcher = ({ className }: LanguageSwitcherProps): JSX.Element => {
   const { t } = useTranslation();
 
-  const toggleLanguage: VoidFunction = () => i18n.changeLanguage(i18n.language === 'en' ? 'it' : 'en');
+  const toggleLanguage: VoidFunction = () => {
+    i18n.changeLanguage(i18n.language === 'en' ? 'it' : 'en');
+  };
 
   return (
     <Button
