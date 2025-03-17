@@ -3,6 +3,7 @@ import { fileURLToPath } from 'url';
 
 import { FlatCompat } from '@eslint/eslintrc';
 import pluginJs from '@eslint/js';
+import i18next from 'eslint-plugin-i18next';
 import pluginReact from 'eslint-plugin-react';
 import globals from 'globals';
 import tseslint from 'typescript-eslint';
@@ -21,6 +22,7 @@ export default [
   pluginJs.configs.recommended,
   ...tseslint.configs.recommended,
   pluginReact.configs.flat.recommended,
+  i18next.configs['flat/recommended'],
   ...compat.extends('airbnb'),
   {
     rules: {
@@ -47,6 +49,7 @@ export default [
       'react/require-default-props': 'off',
       'react/function-component-definition': 'off',
       'no-undef': 'warn',
+      'i18next/no-literal-string': 'warn',
       'import/order': [
         'error',
         {
