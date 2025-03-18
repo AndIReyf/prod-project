@@ -1,5 +1,7 @@
+import { ButtonGetMockError } from 'features/ButtonGetMockError';
 import { useState } from 'react';
 import { classNames } from 'shared/lib';
+import { Button, ThemeButton } from 'shared/ui';
 import { LanguageSwitcher } from 'widgets/LanguageSwitcher';
 import { ThemeSwitcher } from 'widgets/ThemeSwitcher';
 
@@ -22,7 +24,8 @@ export const Sidebar = ({ className }: SidebarProps) => {
         mods: { [classes.collapsed]: collapsed },
       })}
     >
-      <button type="button" onClick={toggle}>Toggle</button>
+      <Button theme={ThemeButton.OUTLINED} onClick={toggle}>Toggle</Button>
+      <ButtonGetMockError />
       <div className={classes.switchersWrapper}>
         <ThemeSwitcher />
         <LanguageSwitcher />

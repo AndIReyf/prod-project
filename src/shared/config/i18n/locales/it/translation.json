@@ -8,6 +8,10 @@
     "langSwitcher": {
       "en": "Inglese",
       "it": "Italiano"
-    }
+    },
+    "reload": "Ricarica Pagina"
+  },
+  "error": {
+    "boundaryError": "Qualcosa è andato storto... Ricarica la Pagina!"
   }
 }

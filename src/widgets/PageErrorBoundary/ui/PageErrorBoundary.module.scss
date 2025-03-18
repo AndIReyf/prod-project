@@ -1,0 +1,13 @@
+.pageErrorBoundary {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100vh;
+}
+
+.text {
+  font: var(--font-l);
+  margin-bottom: 20px;
+}
