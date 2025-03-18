@@ -1,4 +1,4 @@
-import { JSX, useState } from 'react';
+import { useState } from 'react';
 import { classNames } from 'shared/lib';
 import { LanguageSwitcher } from 'widgets/LanguageSwitcher';
 import { ThemeSwitcher } from 'widgets/ThemeSwitcher';
@@ -9,7 +9,7 @@ interface SidebarProps {
   className?: string;
 }
 
-export const Sidebar = ({ className }: SidebarProps): JSX.Element => {
+export const Sidebar = ({ className }: SidebarProps) => {
   const [collapsed, setCollapsed] = useState(true);
 
   const toggle: VoidFunction = () => setCollapsed((prevState) => !prevState);

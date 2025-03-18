@@ -1,8 +1,8 @@
-import { useState, JSX, ReactNode } from 'react';
+import { useState, ReactNode } from 'react';
 
 import { defaultTheme, Theme, ThemeContext } from '../lib/ThemeContext';
 
-export const ThemeProvider = ({ children }: { children: ReactNode }): JSX.Element => {
+export const ThemeProvider = ({ children }: { children: ReactNode }) => {
   const [theme, setTheme] = useState<Theme>(defaultTheme);
 
   return (

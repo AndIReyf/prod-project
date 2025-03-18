@@ -1,4 +1,4 @@
-import { JSX, ReactNode } from 'react';
+import { ReactNode } from 'react';
 import { Link, LinkProps } from 'react-router-dom';
 import { classNames } from 'shared/lib';
 
@@ -17,7 +17,7 @@ interface AppLinkProps extends LinkProps {
 
 export const AppLink = ({
   className, children, theme = AppLinkTheme.PRIMARY, ...linkProps
-}: AppLinkProps): JSX.Element => (
+}: AppLinkProps) => (
   <Link
     {...linkProps}
     className={classNames({ cls: classes.appLink, additional: [className, classes[theme]] })}

@@ -1,4 +1,4 @@
-import { JSX, ReactNode, ButtonHTMLAttributes } from 'react';
+import { ReactNode, ButtonHTMLAttributes } from 'react';
 import { classNames } from 'shared/lib';
 
 import classes from './Button.module.scss';
@@ -15,7 +15,7 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 
 export const Button = ({
   children, className, theme = ThemeButton.CLEAR, ...btnProps
-}: ButtonProps): JSX.Element => (
+}: ButtonProps) => (
   <button
     type="button"
     {...btnProps}

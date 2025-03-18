@@ -1,4 +1,3 @@
-import { JSX } from 'react';
 import { useTranslation } from 'react-i18next';
 import { RoutePath } from 'shared/config';
 import { classNames } from 'shared/lib';
@@ -10,7 +9,7 @@ interface NavbarProps {
   className?: string;
 }
 
-export const Navbar = ({ className }: NavbarProps): JSX.Element => {
+export const Navbar = ({ className }: NavbarProps) => {
   const { t } = useTranslation();
 
   return (

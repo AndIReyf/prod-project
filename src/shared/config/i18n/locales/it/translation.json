@@ -1,6 +1,7 @@
 {
   "pages": {
     "main": "Home",
+    "notFound": "Errore 404: pagina non trovata.",
     "about": "Chi siamo"
   },
   "buttons": {

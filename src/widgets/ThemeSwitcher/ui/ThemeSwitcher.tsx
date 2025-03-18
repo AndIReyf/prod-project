@@ -1,5 +1,4 @@
 import { useTheme } from 'app/providers/ThemeProvider';
-import { JSX } from 'react';
 import ThemeSwitcherIcon from 'shared/assets/icons/ThemeSwitcherIcon.svg';
 import { classNames } from 'shared/lib';
 import { Button } from 'shared/ui';
@@ -10,7 +9,7 @@ interface ThemeSwitcherProps {
   className?: string;
 }
 
-export const ThemeSwitcher = ({ className }: ThemeSwitcherProps): JSX.Element => {
+export const ThemeSwitcher = ({ className }: ThemeSwitcherProps) => {
   const { toggleTheme } = useTheme();
 
   return (
