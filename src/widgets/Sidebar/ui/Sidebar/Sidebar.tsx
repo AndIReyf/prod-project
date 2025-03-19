@@ -18,13 +18,20 @@ export const Sidebar = ({ className }: SidebarProps) => {
 
   return (
     <div
+      data-testid="sidebar"
       className={classNames({
         cls: classes.sidebar,
         additional: [className],
         mods: { [classes.collapsed]: collapsed },
       })}
     >
-      <Button theme={ThemeButton.OUTLINED} onClick={toggle}>Toggle</Button>
+      <Button
+        data-testid="sidebar-toggle"
+        theme={ThemeButton.OUTLINED}
+        onClick={toggle}
+      >
+        Toggle
+      </Button>
       <ButtonGetMockError />
       <div className={classes.switchersWrapper}>
         <ThemeSwitcher />

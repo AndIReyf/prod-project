@@ -11,7 +11,7 @@ interface LanguageSwitcherProps {
 export const LanguageSwitcher = ({ className }: LanguageSwitcherProps) => {
   const { i18n } = useTranslation();
 
-  const toggleLanguage: VoidFunction = () => {
+  const toggleLanguage: VoidFunction = async () => {
     i18n.changeLanguage(i18n.language === 'en' ? 'it' : 'en');
   };
 
