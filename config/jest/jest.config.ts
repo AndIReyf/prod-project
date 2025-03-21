@@ -11,7 +11,7 @@ const config: Config = {
   // Automatically clear mock calls, instances, contexts and results before every test
   clearMocks: true,
   // The test environment that will be used for testing
-  testEnvironment: 'jest-fixed-jsdom',
+  testEnvironment: 'jsdom',
   // An array of regexp pattern strings used to skip coverage collection
   coveragePathIgnorePatterns: [
     '/node_modules/',
