@@ -18,7 +18,7 @@
       "es2017",
       "dom"
     ],
-    "types": ["@testing-library/jest-dom", "jest"]
+    "types": ["@testing-library/jest-dom", "jest", "node"]
   },
   "ts-node": {
     "compilerOptions": {
