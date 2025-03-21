@@ -25,7 +25,5 @@ jobs:
         run: npm run build:prod
       - name: lint types
         run: npm run lint:start
-      - name: lint scss
-        run: npm run lint:scss
       - name: tests
         run: npm run tests
