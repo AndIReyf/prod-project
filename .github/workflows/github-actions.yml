@@ -23,7 +23,13 @@ jobs:
         run: npm install --legacy-peer-deps
       - name: build prod project
         run: npm run build:prod
+        if: always()
       - name: lint types
         run: npm run lint:start
+        if: always()
+      - name: lint scss
+        run: npm run lint:scss
+        if: always()
       - name: tests
         run: npm run tests
+        if: always()
