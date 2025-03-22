@@ -1,26 +1,29 @@
 import { useTranslation } from 'react-i18next';
 import { classNames } from 'shared/lib';
-import { Button } from 'shared/ui';
+import { Translation } from 'shared/types/translation';
+import { Button, ThemeButton } from 'shared/ui';
 
 import classes from './LanguageSwitcher.module.scss';
 
 interface LanguageSwitcherProps {
   className?: string;
+  shortLanguage?: boolean;
 }
 
-export const LanguageSwitcher = ({ className }: LanguageSwitcherProps) => {
+export const LanguageSwitcher = ({ className, shortLanguage }: LanguageSwitcherProps) => {
   const { i18n } = useTranslation();
 
   const toggleLanguage: VoidFunction = async () => {
-    i18n.changeLanguage(i18n.language === 'en' ? 'it' : 'en');
+    await i18n.changeLanguage(i18n.language === Translation.EN ? Translation.IT : Translation.EN);
   };
 
   return (
     <Button
+      theme={ThemeButton.OUTLINED}
       className={classNames({ cls: classes.languageSwitcher, additional: [className] })}
       onClick={toggleLanguage}
     >
-      {i18n.t('buttons.langSwitcher.en')}
+      {i18n.t(`buttons.langSwitcher.${i18n.language}`, { context: shortLanguage && 'short' })}
     </Button>
   );
 };

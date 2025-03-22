@@ -7,7 +7,9 @@
   "buttons": {
     "langSwitcher": {
       "en": "English",
-      "it": "Italian"
+      "en_short": "ENG",
+      "it": "Italian",
+      "it_short": "ITA"
     },
     "reload": "Reload Page"
   },
