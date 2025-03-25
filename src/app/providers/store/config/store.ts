@@ -1,18 +1,22 @@
-import { configureStore } from '@reduxjs/toolkit';
+import { combineReducers, configureStore } from '@reduxjs/toolkit';
 import { counterReducer } from 'features/Counter/model/slice/counterSlice';
 
-interface RootState {
-  counter: ReturnType<typeof counterReducer>;
-}
+const reducer = combineReducers({
+  counter: counterReducer,
+});
 
-export function createReduxStore(
-  preloadedState?: RootState,
-) {
+export type RootState = ReturnType<typeof reducer>;
+
+export function createReduxStore(preloadedState?: RootState) {
   return configureStore({
-    reducer: {
-      counter: counterReducer,
-    },
-    devTools: __IS_DEV__,
+    reducer,
     preloadedState,
+    devTools: __IS_DEV__,
+    middleware: (getDefaultMiddleware) => getDefaultMiddleware({
+      serializableCheck: false,
+    }),
   });
 }
+
+export const store = createReduxStore();
+export type AppDispatch = typeof store.dispatch;
