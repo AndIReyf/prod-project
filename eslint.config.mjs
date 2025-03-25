@@ -56,6 +56,7 @@ export default [
       'react/no-unused-prop-types': 'off',
       'react/require-default-props': 'off',
       'react/function-component-definition': 'off',
+      'no-param-reassign': 'off',
       'no-undef': 'warn',
       'i18next/no-literal-string': 'warn',
       'max-len': ['error', {
