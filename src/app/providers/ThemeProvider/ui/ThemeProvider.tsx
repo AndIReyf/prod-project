@@ -1,8 +1,8 @@
-import { useState, ReactNode } from 'react';
+import { PropsWithChildren, useState } from 'react';
 
 import { defaultTheme, Theme, ThemeContext } from '../lib/ThemeContext';
 
-export const ThemeProvider = ({ children }: { children: ReactNode }) => {
+export const ThemeProvider = ({ children }: PropsWithChildren) => {
   const [theme, setTheme] = useState<Theme>(defaultTheme);
 
   return (

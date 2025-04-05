@@ -60,7 +60,7 @@ export default [
       'no-undef': 'warn',
       'i18next/no-literal-string': 'warn',
       'max-len': ['error', {
-        code: 100,
+        code: 120,
         tabWidth: 2,
         ignoreComments: true,
         ignoreTrailingComments: true,

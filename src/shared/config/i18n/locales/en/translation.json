@@ -11,9 +11,28 @@
       "it": "Italian",
       "it_short": "ITA"
     },
-    "reload": "Reload Page"
+    "reload": "Reload Page",
+    "yes": "Yes",
+    "no": "No"
   },
   "error": {
-    "boundaryError": "Something went wrong... Reload the Page!"
+    "boundaryError": "Something went wrong... Reload the Page!",
+    "authData": "Something went wrong"
+  },
+  "auth": {
+    "log_in": "Log-in",
+    "log_out": "Log-out",
+    "log_out_text": "Do you want to log-out?"
+  },
+  "fields": {
+    "name": "Name",
+    "password": "Password"
+  },
+  "notification": {
+    "login": {
+      "success": "Successfully logged in!",
+      "error": "Something went wrong!",
+      "warning": "Login failed!"
+    }
   }
 }

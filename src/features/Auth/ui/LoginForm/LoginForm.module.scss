@@ -1,0 +1,5 @@
+.submitBtn {
+  &:global(.MuiButton-root) {
+    background-color: var(--bg-color-inverted);
+  }
+}

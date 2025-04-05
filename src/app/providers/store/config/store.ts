@@ -1,8 +1,12 @@
 import { combineReducers, configureStore } from '@reduxjs/toolkit';
+import { userReducer } from 'entities/User';
+import { loginReducer } from 'features/Auth';
 import { counterReducer } from 'features/Counter/model/slice/counterSlice';
 
-const reducer = combineReducers({
+export const reducer = combineReducers({
   counter: counterReducer,
+  login: loginReducer,
+  user: userReducer,
 });
 
 export type RootState = ReturnType<typeof reducer>;

@@ -3,8 +3,11 @@
 @use "app/styles/themes/dark.scss" as *;
 @use "app/styles/themes/light.scss" as *;
 
-.app {
+body {
   font-size: var(--font-m);
+}
+
+.app {
   background-color: var(--bg-color);
   color: var(--primary-color);
   min-height: 100vh;

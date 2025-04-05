@@ -1,23 +1,30 @@
 import './styles/index.scss';
 import { AppRoute } from 'app/providers/router';
-import { useTheme } from 'app/providers/ThemeProvider';
-import { Suspense } from 'react';
-import { classNames } from 'shared/lib';
+import { Theme, useTheme } from 'app/providers/ThemeProvider';
+import { useUserActions } from 'entities/User';
+import { Suspense, useEffect } from 'react';
+import { useBodyClass } from 'shared/hooks';
 import { Navbar } from 'widgets/Navbar';
 import { Sidebar } from 'widgets/Sidebar';
 
 export const App = () => {
   const { theme } = useTheme();
+  const { initAuthData } = useUserActions();
+  useBodyClass(theme, theme === Theme.DARK);
+
+  useEffect(() => {
+    initAuthData();
+  }, []);
 
   return (
-    <div className={classNames({ cls: 'app', additional: [theme] })}>
-      <Suspense fallback="">
+    <Suspense fallback="">
+      <div className="app">
         <Navbar />
         <div className="content-page">
           <Sidebar />
           <AppRoute />
         </div>
-      </Suspense>
-    </div>
+      </div>
+    </Suspense>
   );
 };

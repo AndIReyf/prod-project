@@ -1,1 +1,3 @@
-export { useAppDispatch, useAppSelector } from './hooks';
+export { useAppDispatch, useAppSelector } from './reduxHooks';
+export { useModal } from './useModal';
+export { useBodyClass } from './useBodyClass';

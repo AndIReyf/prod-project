@@ -1,14 +1,16 @@
 import { createReduxStore, RootState } from 'app/providers/store';
-import { JSX, ReactNode } from 'react';
+import { PropsWithChildren } from 'react';
 import { Provider } from 'react-redux';
 import { DeepPartial } from 'shared/types/data';
 
 interface StoreProviderProps {
-  children: ReactNode;
   preloadedStore?: DeepPartial<RootState>;
 }
 
-export const StoreProvider = ({ children, preloadedStore }: StoreProviderProps): JSX.Element => {
+export const StoreProvider = ({
+  children,
+  preloadedStore,
+}: PropsWithChildren<StoreProviderProps>) => {
   const store = createReduxStore(preloadedStore as RootState);
 
   return (

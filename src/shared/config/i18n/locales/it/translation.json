@@ -11,9 +11,28 @@
       "it": "Italiano",
       "it_short": "ITA"
     },
-    "reload": "Ricarica Pagina"
+    "reload": "Ricarica Pagina",
+    "yes": "Si",
+    "no": "No"
   },
   "error": {
-    "boundaryError": "Qualcosa è andato storto... Ricarica la Pagina!"
+    "boundaryError": "Qualcosa è andato storto... Ricarica la Pagina!",
+    "authData": "Qualcosa è andato storto"
+  },
+  "auth": {
+    "log_in": "Entra",
+    "log_out": "Esci",
+    "log_out_text": "Sei sicuro di voler uscire?"
+  },
+  "fields": {
+    "name": "Nome",
+    "password": "Password"
+  },
+  "notification": {
+    "login": {
+      "success": "Accesso effettuato con successo!",
+      "error": "Qualcosa è andato storto!",
+      "warning": "Accesso non riuscito, riprova!"
+    }
   }
 }

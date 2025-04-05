@@ -1,6 +1,6 @@
 import type { Preview } from '@storybook/react';
 
-import { StyleDecorator } from '../../src/shared/config/storybook/StyleDecorator';
+import { StoreDecorator, StyleDecorator, TranslationDecorator } from '../../src/shared/config';
 
 const preview: Preview = {
   parameters: {
@@ -13,6 +13,8 @@ const preview: Preview = {
   },
   decorators: [
     StyleDecorator,
+    StoreDecorator,
+    TranslationDecorator,
   ],
 };
 

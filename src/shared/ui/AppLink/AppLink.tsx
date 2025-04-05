@@ -1,4 +1,4 @@
-import { ReactNode } from 'react';
+import { PropsWithChildren } from 'react';
 import { Link, LinkProps } from 'react-router-dom';
 import { classNames } from 'shared/lib';
 
@@ -11,13 +11,12 @@ export enum AppLinkTheme {
 
 interface AppLinkProps extends LinkProps {
   className?: string;
-  children: ReactNode;
   theme?: AppLinkTheme;
 }
 
 export const AppLink = ({
   className, children, theme = AppLinkTheme.PRIMARY, ...linkProps
-}: AppLinkProps) => (
+}: PropsWithChildren<AppLinkProps>) => (
   <Link
     {...linkProps}
     className={classNames({ cls: classes.appLink, additional: [className, classes[theme]] })}

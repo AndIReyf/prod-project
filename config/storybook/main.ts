@@ -1,6 +1,8 @@
 import path from 'path';
 
 import type { StorybookConfig } from '@storybook/react-webpack5';
+import { TsconfigPathsPlugin } from 'tsconfig-paths-webpack-plugin';
+import { DefinePlugin } from 'webpack';
 
 import { buildCssLoaders } from '../build/loaders/buildCssLoaders';
 import { BuildPaths } from '../build/types/config';
@@ -30,9 +32,11 @@ const config: StorybookConfig = {
 
     const cssLoader = buildCssLoaders(true);
 
+    config.plugins.push(new DefinePlugin({ __IS_DEV__: true }));
     config.resolve.modules.push(paths.src);
     config.resolve.extensions.push('.ts', '.tsx');
     config.module.rules.push(cssLoader);
+    config.resolve.plugins = [new TsconfigPathsPlugin()];
 
     return config;
   },

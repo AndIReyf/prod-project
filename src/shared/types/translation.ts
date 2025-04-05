@@ -1,4 +1,4 @@
-export enum Translation {
-  EN = 'en',
-  IT = 'it',
-}
+export const Translation = {
+  EN: 'en',
+  IT: 'it',
+} as const;
