@@ -5,7 +5,7 @@ import { counterReducer } from 'features/Counter/model/slice/counterSlice';
 
 import { createReducerManager } from './reducerManager';
 
-interface ReducersMap {
+export interface ReducersMap {
   counter: typeof counterReducer,
   user: typeof userReducer,
   [api.reducerPath]: typeof api.reducer,
@@ -24,12 +24,15 @@ export const reducer = combineReducers(reducersMap);
 
 export type RootState = ReturnType<typeof reducer>;
 
-const reducerManager = createReducerManager(reducersMap);
-
 type ReducerManager = ReturnType<typeof createReducerManager>;
+export interface StoreWithManager extends EnhancedStore<RootState> {
+  reducerManager: ReducerManager;
+}
 
-export function createReduxStore(preloadedState?: RootState) {
-  return configureStore({
+export function createReduxStore(preloadedState?: RootState, dynamicReducers?: ReducersMap) {
+  const reducerManager = createReducerManager({ ...dynamicReducers, ...reducersMap });
+
+  const store = configureStore({
     reducer: reducerManager.reduce,
     preloadedState,
     devTools: __IS_DEV__,
@@ -37,13 +40,14 @@ export function createReduxStore(preloadedState?: RootState) {
       serializableCheck: false,
     }).concat(api.middleware),
   });
+
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+  // @ts-expect-error
+  store.reducerManager = reducerManager;
+
+  return store;
 }
 
-export const store = createReduxStore();
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-// @ts-expect-error
-store.reducerManager = reducerManager;
-export type AppDispatch = typeof store.dispatch;
-export interface StoreWithManager extends EnhancedStore<RootState> {
-  reducerManager: ReducerManager;
-}
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+const { dispatch } = createReduxStore();
+export type AppDispatch = typeof dispatch;
