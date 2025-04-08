@@ -4,7 +4,7 @@ import {
 } from 'shared/hooks';
 import { InferType, object, string } from 'yup';
 
-import { getPassword, getUsername } from '../selectors/loginSelectors';
+import { getAuthDataError, getPassword, getUsername } from '../selectors/loginSelectors';
 import { loginByUserName } from '../services/loginByUserName';
 import { loginReducer } from '../slice/loginSlice';
 
@@ -21,6 +21,7 @@ export const useLoginForm = () => {
   const dispatch = useAppDispatch();
   const name = useAppSelector(getUsername);
   const password = useAppSelector(getPassword);
+  const authDataError = useAppSelector(getAuthDataError);
 
   const initialValues: InitialValuesType = {
     name,
@@ -36,7 +37,7 @@ export const useLoginForm = () => {
     },
   });
 
-  useDynamicReducer(reducersList);
+  useDynamicReducer(reducersList, !!authDataError);
 
-  return formik;
+  return { ...formik, authDataError };
 };

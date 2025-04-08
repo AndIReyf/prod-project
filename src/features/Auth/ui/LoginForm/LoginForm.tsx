@@ -1,5 +1,5 @@
 import { Button as MuiButton, TextField, Typography } from '@mui/material';
-import { getAuthDataError, getIsAuthDataLoading } from 'features/Auth/model/selectors/loginSelectors';
+import { getIsAuthDataLoading } from 'features/Auth/model/selectors/loginSelectors';
 import { useTranslation } from 'react-i18next';
 import { useAppSelector } from 'shared/hooks';
 import { classNames } from 'shared/lib';
@@ -16,7 +16,6 @@ interface LoginFormProps {
 const LoginForm = ({ className }: LoginFormProps) => {
   const { t } = useTranslation();
   const isLoading = useAppSelector(getIsAuthDataLoading);
-  const authDataError = useAppSelector(getAuthDataError);
   const { setUsername, setPassword } = useLoginFormActions();
   const {
     values,
@@ -26,6 +25,7 @@ const LoginForm = ({ className }: LoginFormProps) => {
     handleSubmit,
     isValid,
     touched,
+    authDataError,
   } = useLoginForm();
 
   const onNameChange = (e: React.ChangeEvent<HTMLInputElement>): void => {

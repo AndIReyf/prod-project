@@ -48,6 +48,5 @@ export function createReduxStore(preloadedState?: RootState, dynamicReducers?: R
   return store;
 }
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-const { dispatch } = createReduxStore();
-export type AppDispatch = typeof dispatch;
+type ReduxStore = ReturnType<typeof createReduxStore>;
+export type AppDispatch = ReduxStore['dispatch'];
