@@ -1,6 +1,7 @@
-import { MuiModal } from 'shared/ui';
+import { Suspense } from 'react';
+import { Loader, MuiModal } from 'shared/ui';
 
-import { LoginForm } from '../LoginForm/LoginForm';
+import { LoginFormAsync } from '../../ui/LoginForm/LoginForm.async';
 
 interface LoginModalProps {
   open: boolean;
@@ -9,6 +10,8 @@ interface LoginModalProps {
 
 export const LoginModal = ({ open, onClose }: LoginModalProps) => (
   <MuiModal open={open} onClose={onClose}>
-    <LoginForm />
+    <Suspense fallback={<Loader />}>
+      <LoginFormAsync />
+    </Suspense>
   </MuiModal>
 );

@@ -13,7 +13,7 @@ interface LoginFormProps {
   className?: string;
 }
 
-export const LoginForm = ({ className }: LoginFormProps) => {
+const LoginForm = ({ className }: LoginFormProps) => {
   const { t } = useTranslation();
   const isLoading = useAppSelector(getIsAuthDataLoading);
   const authDataError = useAppSelector(getAuthDataError);
@@ -82,3 +82,5 @@ export const LoginForm = ({ className }: LoginFormProps) => {
     </form>
   );
 };
+
+export default LoginForm;

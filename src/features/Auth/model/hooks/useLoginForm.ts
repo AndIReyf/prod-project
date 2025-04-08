@@ -1,9 +1,12 @@
-import { loginByUserName } from 'features/Auth/model/services/loginByUserName/loginByUserName';
 import { useFormik } from 'formik';
-import { useAppDispatch, useAppSelector } from 'shared/hooks';
+import {
+  ReducersList, useAppDispatch, useAppSelector, useDynamicReducer,
+} from 'shared/hooks';
 import { InferType, object, string } from 'yup';
 
 import { getPassword, getUsername } from '../selectors/loginSelectors';
+import { loginByUserName } from '../services/loginByUserName';
+import { loginReducer } from '../slice/loginSlice';
 
 const validationSchema = object({
   name: string().required(),
@@ -11,6 +14,8 @@ const validationSchema = object({
 });
 
 type InitialValuesType = InferType<typeof validationSchema>;
+
+const reducersList: ReducersList = { login: loginReducer };
 
 export const useLoginForm = () => {
   const dispatch = useAppDispatch();
@@ -30,6 +35,8 @@ export const useLoginForm = () => {
       dispatch(loginByUserName({ username: name, password }));
     },
   });
+
+  useDynamicReducer(reducersList);
 
   return formik;
 };
