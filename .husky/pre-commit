@@ -1,4 +1,1 @@
-#!/bin/sh
-. "$(dirname "$0")/_/husky.sh"
-
 npm run build:prod && npm run lint:start && npm run lint:scss && npm run tests && npm run build-storybook

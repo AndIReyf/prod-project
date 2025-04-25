@@ -1,4 +1,4 @@
-import { i18n } from 'shared/config/i18n/i18n';
+import { useTranslation } from 'react-i18next';
 import { classNames } from 'shared/lib';
 import { Translation } from 'shared/types/translation';
 import { Button, ThemeButton } from 'shared/ui';
@@ -11,6 +11,8 @@ interface LanguageSwitcherProps {
 }
 
 export const LanguageSwitcher = ({ className, shortLanguage }: LanguageSwitcherProps) => {
+  const { i18n } = useTranslation();
+
   const toggleLanguage: VoidFunction = async () => {
     const language = i18n.language === Translation.EN ? Translation.IT : Translation.EN;
     await i18n.changeLanguage(language);

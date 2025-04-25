@@ -35,20 +35,6 @@
   flex-direction: column;
 }
 
-.link {
-  margin-bottom: 15px;
-  display: flex;
-  align-items: flex-end;
-  color: var(--bg-color);
-  white-space: nowrap;
-
-  & svg {
-    fill: var(--bg-color);
-    margin-right: 5px;
-    flex-shrink: 0;
-  }
-}
-
 .collapsed {
   width: var(--sidebar-width-colapsed);
 
@@ -60,15 +46,5 @@
   .switchersWrapper {
     flex-direction: column;
     align-items: center;
-  }
-
-  .link {
-    justify-content: center;
-
-    & span {
-      width: 0;
-      opacity: 0;
-      transition: opacity .3s, width .4s;
-    }
   }
 }

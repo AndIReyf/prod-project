@@ -14,5 +14,14 @@
       "password": "123"
     }
   ],
-  "profile": { "name": "typicode" }
+  "profile": {
+    "name": "Andrey",
+    "surname": "Pro",
+    "age": 35,
+    "currency": "EUR",
+    "country": "Italy",
+    "city": "Bolzano",
+    "nickname": "Hak",
+    "avatar": ""
+  }
 }

@@ -28,7 +28,6 @@ export const loginByUserName = createAsyncThunk<User, LoginByUserNameStateProps,
       return data;
     } catch (e) {
       console.error(e);
-      console.log('LOGIN_NOTIFICATION.error', LOGIN_NOTIFICATION.error);
       getNotification('error', LOGIN_NOTIFICATION.error);
       return thunkAPI.rejectWithValue('Login error');
     }

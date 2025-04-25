@@ -1,4 +1,5 @@
 import { combineReducers, configureStore, EnhancedStore } from '@reduxjs/toolkit';
+import { profileReducer } from 'entities/Profile';
 import { userReducer } from 'entities/User';
 import { api, loginReducer } from 'features/Auth';
 import { counterReducer } from 'features/Counter/model/slice/counterSlice';
@@ -12,6 +13,7 @@ export interface ReducersMap {
 
   // Dynamic reducers
   login?: typeof loginReducer,
+  profile?: typeof profileReducer,
 }
 
 const reducersMap: ReducersMap = {
@@ -30,7 +32,7 @@ export interface StoreWithManager extends EnhancedStore<RootState> {
 }
 
 export function createReduxStore(preloadedState?: RootState, dynamicReducers?: ReducersMap) {
-  const reducerManager = createReducerManager({ ...dynamicReducers, ...reducersMap });
+  const reducerManager = createReducerManager({ ...reducersMap, ...dynamicReducers });
 
   const store = configureStore({
     reducer: reducerManager.reduce,
@@ -41,9 +43,7 @@ export function createReduxStore(preloadedState?: RootState, dynamicReducers?: R
     }).concat(api.middleware),
   });
 
-  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-  // @ts-expect-error
-  store.reducerManager = reducerManager;
+  (store as StoreWithManager).reducerManager = reducerManager;
 
   return store;
 }
