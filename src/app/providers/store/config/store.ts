@@ -1,34 +1,17 @@
 import {
-  combineReducers, configureStore, EnhancedStore, Reducer, ReducersMapObject,
+  combineReducers, configureStore, Reducer, ReducersMapObject,
 } from '@reduxjs/toolkit';
-import { profileReducer } from 'entities/Profile';
 import { userReducer } from 'entities/User';
-import { api, loginReducer } from 'features/Auth';
+import { api } from 'features/Auth';
 import { counterReducer } from 'features/Counter/model/slice/counterSlice';
 import { NavigateFunction } from 'react-router/dist/development';
 import { $axios } from 'shared/api/api';
 
+import {
+  ReducersMap, RootState, StoreWithManager, ThunkExtraArgument,
+} from '../types/storeTypes';
+
 import { createReducerManager } from './reducerManager';
-
-export interface ThunkExtraArgument {
-  api: typeof $axios;
-  navigate?: NavigateFunction;
-}
-
-export interface IThunkConfig<T> {
-  rejectValue: T;
-  extra: ThunkExtraArgument;
-}
-
-export interface ReducersMap {
-  counter: typeof counterReducer,
-  user: typeof userReducer,
-  [api.reducerPath]: typeof api.reducer,
-
-  // Dynamic reducers
-  login?: typeof loginReducer,
-  profile?: typeof profileReducer,
-}
 
 const reducersMap: ReducersMap = {
   counter: counterReducer,
@@ -37,13 +20,6 @@ const reducersMap: ReducersMap = {
 };
 
 export const reducer = combineReducers(reducersMap);
-
-export type RootState = ReturnType<typeof reducer>;
-
-type ReducerManager = ReturnType<typeof createReducerManager>;
-export interface StoreWithManager extends EnhancedStore<RootState> {
-  reducerManager: ReducerManager;
-}
 
 export function createReduxStore(
   preloadedState?: RootState,
@@ -74,6 +50,3 @@ export function createReduxStore(
 
   return store;
 }
-
-type ReduxStore = ReturnType<typeof createReduxStore>;
-export type AppDispatch = ReduxStore['dispatch'];

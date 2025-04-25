@@ -4,7 +4,7 @@ import { Provider } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { DeepPartial } from 'shared/types/data';
 
-import { ReducersMap } from '../config/store';
+import { ReducersMap } from '../types/storeTypes';
 
 interface StoreProviderProps {
   preloadedStore?: DeepPartial<RootState>;

@@ -2,7 +2,7 @@ import {
   Action, combineReducers, Reducer, ReducersMapObject,
 } from '@reduxjs/toolkit';
 
-import { RootState } from './store';
+import { RootState } from '../types/storeTypes';
 
 type RootStateKey = keyof RootState;
 
