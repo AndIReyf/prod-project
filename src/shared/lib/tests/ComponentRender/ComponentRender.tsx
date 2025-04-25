@@ -18,12 +18,12 @@ export const ComponentRender = ({
   preloadedStore,
 }: ComponentRenderProps) => (
   render(
-    <StoreProvider preloadedStore={preloadedStore}>
-      <MemoryRouter initialEntries={[router]}>
+    <MemoryRouter initialEntries={[router]}>
+      <StoreProvider preloadedStore={preloadedStore}>
         <I18nextProvider i18n={i18n}>
           {component}
         </I18nextProvider>
-      </MemoryRouter>
-    </StoreProvider>,
+      </StoreProvider>
+    </MemoryRouter>,
   )
 );

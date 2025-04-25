@@ -7,7 +7,7 @@ import { BundleAnalyzerPlugin } from 'webpack-bundle-analyzer';
 
 import { BuildOptions } from './types/config';
 
-export const buildPlugins = ({ paths, isDev }: BuildOptions): WebpackPluginInstance[] => {
+export const buildPlugins = ({ paths, isDev, apiUrl }: BuildOptions): WebpackPluginInstance[] => {
   const plugins: WebpackPluginInstance[] = [
     new MiniCssExtractPlugin({
       filename: 'css/[name].[contenthash:8].css',
@@ -28,6 +28,7 @@ export const buildPlugins = ({ paths, isDev }: BuildOptions): WebpackPluginInsta
     }),
     new DefinePlugin({
       __IS_DEV__: JSON.stringify(isDev),
+      __API__: JSON.stringify(apiUrl),
     }),
   ];
 

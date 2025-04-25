@@ -32,7 +32,7 @@ const config: StorybookConfig = {
 
     const cssLoader = buildCssLoaders(true);
 
-    config.plugins.push(new DefinePlugin({ __IS_DEV__: true }));
+    config.plugins.push(new DefinePlugin({ __IS_DEV__: JSON.stringify(true), __API__: JSON.stringify('') }));
     config.resolve.modules.push(paths.src);
     config.resolve.extensions.push('.ts', '.tsx');
     config.module.rules.push(cssLoader);

@@ -3,6 +3,8 @@ import { profileReducer } from 'entities/Profile';
 import { userReducer } from 'entities/User';
 import { api, loginReducer } from 'features/Auth';
 import { counterReducer } from 'features/Counter/model/slice/counterSlice';
+import { NavigateFunction } from 'react-router/dist/development';
+import { $axios } from 'shared/api/api';
 
 import { createReducerManager } from './reducerManager';
 
@@ -31,7 +33,11 @@ export interface StoreWithManager extends EnhancedStore<RootState> {
   reducerManager: ReducerManager;
 }
 
-export function createReduxStore(preloadedState?: RootState, dynamicReducers?: ReducersMap) {
+export function createReduxStore(
+  preloadedState?: RootState,
+  dynamicReducers?: ReducersMap,
+  navigate?: NavigateFunction,
+) {
   const reducerManager = createReducerManager({ ...reducersMap, ...dynamicReducers });
 
   const store = configureStore({
@@ -40,6 +46,12 @@ export function createReduxStore(preloadedState?: RootState, dynamicReducers?: R
     devTools: __IS_DEV__,
     middleware: (getDefaultMiddleware) => getDefaultMiddleware({
       serializableCheck: false,
+      thunk: {
+        extraArgument: {
+          api: $axios,
+          navigate,
+        },
+      },
     }).concat(api.middleware),
   });
 
@@ -50,3 +62,13 @@ export function createReduxStore(preloadedState?: RootState, dynamicReducers?: R
 
 type ReduxStore = ReturnType<typeof createReduxStore>;
 export type AppDispatch = ReduxStore['dispatch'];
+
+export interface ThunkExtraArgument {
+  api: typeof $axios;
+  navigate: NavigateFunction;
+}
+
+export interface IThunkConfig<T> {
+  rejectValue: T;
+  extra: ThunkExtraArgument;
+}

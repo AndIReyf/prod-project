@@ -24,6 +24,8 @@ export default [
         ...globals.browser,
         ...globals.jest,
         ...globals.es2021,
+        __IS_DEV__: true,
+        __API__: true,
       },
     },
   },
