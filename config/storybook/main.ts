@@ -32,11 +32,14 @@ const config: StorybookConfig = {
 
     const cssLoader = buildCssLoaders(true);
 
-    config.plugins.push(new DefinePlugin({ __IS_DEV__: JSON.stringify(true), __API__: JSON.stringify('') }));
-    config.resolve.modules.push(paths.src);
-    config.resolve.extensions.push('.ts', '.tsx');
-    config.module.rules.push(cssLoader);
-    config.resolve.plugins = [new TsconfigPathsPlugin()];
+    config.plugins?.push(new DefinePlugin({ __IS_DEV__: JSON.stringify(true), __API__: JSON.stringify('') }));
+    config!.module!.rules?.push(cssLoader);
+
+    if (config.resolve) {
+      config.resolve.modules?.push(paths.src);
+      config.resolve.extensions?.push('.ts', '.tsx');
+      config.resolve.plugins = [new TsconfigPathsPlugin()];
+    }
 
     return config;
   },

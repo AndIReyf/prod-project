@@ -8,7 +8,7 @@ import { createRoot } from 'react-dom/client';
 import { BrowserRouter } from 'react-router-dom';
 import { PageErrorBoundary } from 'widgets/PageErrorBoundary';
 
-const root = document.getElementById('root');
+const root = document.getElementById('root')!;
 
 createRoot(root).render(
   <BrowserRouter>

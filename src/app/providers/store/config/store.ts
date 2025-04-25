@@ -1,4 +1,6 @@
-import { combineReducers, configureStore, EnhancedStore } from '@reduxjs/toolkit';
+import {
+  combineReducers, configureStore, EnhancedStore, Reducer, ReducersMapObject,
+} from '@reduxjs/toolkit';
 import { profileReducer } from 'entities/Profile';
 import { userReducer } from 'entities/User';
 import { api, loginReducer } from 'features/Auth';
@@ -7,6 +9,16 @@ import { NavigateFunction } from 'react-router/dist/development';
 import { $axios } from 'shared/api/api';
 
 import { createReducerManager } from './reducerManager';
+
+export interface ThunkExtraArgument {
+  api: typeof $axios;
+  navigate?: NavigateFunction;
+}
+
+export interface IThunkConfig<T> {
+  rejectValue: T;
+  extra: ThunkExtraArgument;
+}
 
 export interface ReducersMap {
   counter: typeof counterReducer,
@@ -38,19 +50,22 @@ export function createReduxStore(
   dynamicReducers?: ReducersMap,
   navigate?: NavigateFunction,
 ) {
-  const reducerManager = createReducerManager({ ...reducersMap, ...dynamicReducers });
+  const initialReducers = { ...reducersMap, ...dynamicReducers } as ReducersMapObject<RootState>;
+  const reducerManager = createReducerManager(initialReducers);
+
+  const extraArgument:ThunkExtraArgument = {
+    api: $axios,
+    navigate,
+  };
 
   const store = configureStore({
-    reducer: reducerManager.reduce,
+    reducer: reducerManager.reduce as Reducer<RootState>,
     preloadedState,
     devTools: __IS_DEV__,
     middleware: (getDefaultMiddleware) => getDefaultMiddleware({
       serializableCheck: false,
       thunk: {
-        extraArgument: {
-          api: $axios,
-          navigate,
-        },
+        extraArgument,
       },
     }).concat(api.middleware),
   });
@@ -62,13 +77,3 @@ export function createReduxStore(
 
 type ReduxStore = ReturnType<typeof createReduxStore>;
 export type AppDispatch = ReduxStore['dispatch'];
-
-export interface ThunkExtraArgument {
-  api: typeof $axios;
-  navigate: NavigateFunction;
-}
-
-export interface IThunkConfig<T> {
-  rejectValue: T;
-  extra: ThunkExtraArgument;
-}
